@@ -3,3 +3,6 @@ node_modules/
 
 # Secret data
 config.json
+
+# Specific game files
+database.sqlite
