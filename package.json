@@ -1,0 +1,17 @@
+{
+  "name": "dnd-discord-bot",
+  "version": "0.0.1",
+  "description": "Discord Bot to facilitate DnD sessions",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "sequelize": "^5.21.6",
+    "sqlite3": "^4.1.1",
+    "table": "^5.4.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pratik Panda"
+}
