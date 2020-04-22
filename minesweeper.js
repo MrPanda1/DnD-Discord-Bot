@@ -1,3 +1,5 @@
+// Credit for code goes to "Nommiin" (https://twitter.com/Nommiin/status/1177782730794385408): https://pastebin.com/fyuHxEbw
+
 const Names = [
 	"one",
 	"two",
