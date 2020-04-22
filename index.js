@@ -2,6 +2,7 @@ const Discord = require('discord.js');												// Get the discord.js module
 const config = require('./config.json');											// Get the config data
 const Characters = require('./characters.js');
 const Dice = require('./dice.js');
+const Minesweeper = require('./minesweeper.js')
 
 const client = new Discord.Client();												// create a new Discord client
 
@@ -25,6 +26,20 @@ client.on('message', async message => {
 
 	if (command === 'test') {														// Make sure bot is up and running
 		message.channel.send('The bot is alive.');
+	}
+	else if (command === 'minesweeper') {
+		let commands = commandArgs.split(' ')
+		let size = parseInt(commands[0])
+		if (isNaN(size) || size < 2 || size > 8) {
+			message.reply("You must provide a valid number between 2 and 8.");
+		}
+		else if (commands.length > 1) {
+			message.reply("Too many arguments passed in.")
+		}
+		else {
+			let Board = Minesweeper.CreateBoard(size);
+			message.channel.send(`${Board.String}(${Board.Count} bombs)`);
+		}
 	}
 	else if (Characters.commands.indexOf(command) > -1) {						// All character commands
 		const output = await Characters.executeCommand(command, commandArgs)
