@@ -41,7 +41,14 @@ function CreateBoard(size) {
 
 	// Create Bombs
 	for(var i = 0; i < Board.Count; i++) {
-		Board.Grid[irandom(Board.Width)][irandom(Board.Height)] = 0;
+        var x = irandom(Board.Width);
+        var y = irandom(Board.Height);
+        if (Board.Grid[x][y] === 0) {
+            i--;
+        }
+        else {
+            Board.Grid[x][y] = 0;
+        }
 	}
 	
 	// Create Counters
