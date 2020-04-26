@@ -8,13 +8,15 @@ The current prefix for the bot is **?**.
 [] shows optional arguments
 
 - Character
-    - **character create** *name* *race* *subrace*
-    - **character edit** *name* *race* *subrace*
-    - **character display** *[name]*
+    - **characters create** *name* *race* *subrace*
+    - **characters edit** *name* *race* *subrace*
+    - **characters display** *[name]*
 - Dice
     - **roll** *<# of dice>*d*<# of sides>*
 - Minesweeper
     - **minesweeper** *<side length between 2 and 8>*
 
 ## To Do
+Add stats stuff
+Add move order
 Literally everything else
