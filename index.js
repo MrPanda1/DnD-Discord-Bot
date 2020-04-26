@@ -51,7 +51,7 @@ client.on('message', async message => {
 		const output = await Stats.executeCommand(commandArgs)
 		return message.channel.send(output)
 	}
-	else if (Dice.commands.indexOf(command) > -1) {
+	else if (command === 'roll') {
 		const output = await Dice.executeCommand(command, commandArgs);
 		return message.channel.send(output)
 	}
