@@ -6,9 +6,9 @@ The current prefix for the bot is **?**.
 
 ## Current Commands
 - Character
-    - **create** *name* *race* *subrace*
-    - **edit** *name* *race* *subrace*
-    - **display** *(optional) name*
+    - **character create** *name* *race* *subrace*
+    - **character edit** *name* *race* *subrace*
+    - **character display** *(optional) name*
 - Dice
     - **roll** *<# of dice>*d*<# of sides>*
 
