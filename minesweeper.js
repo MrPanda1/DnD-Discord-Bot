@@ -30,7 +30,7 @@ function CreateBoard(size) {
 		Width: size,
 		Height: size,
 		String: "",
-		Count: Math.max(Math.floor((size * size) / 4), irandom(Math.floor((size * size) / 2)))
+		Count: Math.max(Math.floor((size * size) / 4), irandom(Math.floor((size * size) / 3)))
 	}
 
 	// Create Squares
