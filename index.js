@@ -1,6 +1,7 @@
 const Discord = require('discord.js');												// Get the discord.js module
 const config = require('./config.json');											// Get the config data
 const Characters = require('./characters.js');
+const Stats = require('./stats.js');
 const Dice = require('./dice.js');
 const Minesweeper = require('./minesweeper.js')
 
@@ -12,6 +13,7 @@ client.once('ready', () => {														// when the client is ready, run this 
 	console.log('Bot Started.');													// Print that we have started
 
 	Characters.Characters.sync();
+	Stats.Stats.sync();
 });
 
 
@@ -42,7 +44,11 @@ client.on('message', async message => {
 		}
 	}
 	else if (Characters.commands.indexOf(command) > -1) {						// All character commands
-		const output = await Characters.executeCommand(command, commandArgs)
+		const output = await Characters.executeCommand(command, commandArgs, message)
+		return message.channel.send(output)
+	}
+	else if (Stats.commands.indexOf(command) > -1) {							// All stats commands
+		const output = await Stats.executeCommand(command, commandArgs)
 		return message.channel.send(output)
 	}
 	else if (Dice.commands.indexOf(command) > -1) {

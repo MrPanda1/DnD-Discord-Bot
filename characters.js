@@ -1,14 +1,14 @@
 const Sequelize = require('sequelize');												// Get the sequelize module for databases
 const Table = require('table');														// Get the table module for pretty print
 
-const commands = ['create', 'edit', 'display']
+const commands = ['character_create', 'character_edit', 'character_display']
 
-async function executeCommand(command, commandArgs) {
+async function executeCommand(command, commandArgs, message) {
     const index = commands.indexOf(command);
     
     switch(index) {
         case 0:
-            return await createCharacter(commandArgs);
+            return await createCharacter(commandArgs, message);
         case 1:
             return await editCharacter(commandArgs);
         case 2:
@@ -54,7 +54,7 @@ const Characters = sequelize.define('characters', {
 	},
 });
 
-async function createCharacter(commandArgs) {
+async function createCharacter(commandArgs, message) {
     const splitArgs = commandArgs.split(' ');
     const charName = splitArgs.shift();
     const charRace = splitArgs.shift();
@@ -71,7 +71,7 @@ async function createCharacter(commandArgs) {
         return `Character ${char.name} added.`;
     }
     catch (e) {
-        return 'ERROR: Adding a character. (' + e.name + ')';
+        return 'ERROR: Adding a character. (' + e + ')';
     }
 }
 
