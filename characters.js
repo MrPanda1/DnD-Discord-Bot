@@ -1,18 +1,20 @@
 const Sequelize = require('sequelize');												// Get the sequelize module for databases
 const Table = require('table');														// Get the table module for pretty print
 
-const commands = ['character_create', 'character_edit', 'character_display']
+const commands = ['create', 'edit', 'display']
 
-async function executeCommand(command, commandArgs, message) {
+async function executeCommand(commandArgs, message) {
+    const commandArray = commandArgs.split(' ');
+    const command = commandArray.shift();
     const index = commands.indexOf(command);
     
     switch(index) {
         case 0:
-            return await createCharacter(commandArgs, message);
+            return await createCharacter(commandArray, message);
         case 1:
-            return await editCharacter(commandArgs);
+            return await editCharacter(commandArray);
         case 2:
-            return await displayCharacters(commandArgs);
+            return await displayCharacters(commandArray);
     }
 }
 
@@ -99,7 +101,7 @@ async function editCharacter(commandArgs) {
 }
 
 async function displayCharacters(commandArgs) {
-    if(commandArgs) {
+    if(commandArgs === []) {
         const charName = commandArgs;
         // SELECT * FROM characters WHERE name = 'charName' LIMIT 1;
         const char = await Characters.findOne({ where: { name: charName } });

@@ -43,11 +43,11 @@ client.on('message', async message => {
 			message.channel.send(`${Board.String}(${Board.Count} bombs)`);
 		}
 	}
-	else if (Characters.commands.indexOf(command) > -1) {						// All character commands
-		const output = await Characters.executeCommand(command, commandArgs, message)
+	else if (command === 'character') {												// All character commands
+		const output = await Characters.executeCommand(commandArgs, message)
 		return message.channel.send(output)
 	}
-	else if (Stats.commands.indexOf(command) > -1) {							// All stats commands
+	else if (Stats.commands.indexOf(command) > -1) {								// All stats commands
 		const output = await Stats.executeCommand(command, commandArgs)
 		return message.channel.send(output)
 	}
