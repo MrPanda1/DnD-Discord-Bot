@@ -10,11 +10,11 @@ async function executeCommand(commandArgs, message) {
     
     switch(index) {
         case 0:
-            return await createCharacter(commandArray, message);
+            return await createCharacter(commandArray.join(' '), message);
         case 1:
-            return await editCharacter(commandArray);
+            return await editCharacter(commandArray.join(' '));
         case 2:
-            return await displayCharacters(commandArray);
+            return await displayCharacters(commandArray.join(' '));
     }
 }
 
@@ -101,7 +101,7 @@ async function editCharacter(commandArgs) {
 }
 
 async function displayCharacters(commandArgs) {
-    if(commandArgs === []) {
+    if(commandArgs) {
         const charName = commandArgs;
         // SELECT * FROM characters WHERE name = 'charName' LIMIT 1;
         const char = await Characters.findOne({ where: { name: charName } });
