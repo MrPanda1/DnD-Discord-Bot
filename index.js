@@ -26,34 +26,37 @@ client.on('message', async message => {
 	const command = args.shift().toLowerCase();										// First argument is the command
 	const commandArgs = args.join(' ')												// Rejoin all the arguments for the command to be parsed inside statements
 
-	if (command === 'test') {														// Make sure bot is up and running
-		message.channel.send('The bot is alive.');
+	let output;
+
+	switch(command) {
+		case 'test':
+			return message.channel.send('The bot is alive.');
+			break;
+		case 'minesweeper':
+			let commands = commandArgs.split(' ')
+			let size = parseInt(commands[0])
+			if (isNaN(size) || size < 2 || size > 8) {
+				return message.reply("You must provide a valid number between 2 and 8.");
+			}
+			else if (commands.length > 1) {
+				return message.reply("Too many arguments passed in.");
+			}
+			else {
+				let Board = Minesweeper.CreateBoard(size);
+				return message.channel.send(`${Board.String}(${Board.Count} bombs)`);
+			}
+			break;
+		case 'characters':
+			output = await Characters.executeCommand(commandArgs, message);
+			return message.channel.send(output);
+			break;
+		case 'stats':
+			output = await Stats.executeCommand(commandArgs);
+			return message.channel.send(output);
+			break;
+		case 'roll':
+			output = await Dice.executeCommand(command, commandArgs);
+			return message.channel.send(output);
+			break;
 	}
-	else if (command === 'minesweeper') {
-		let commands = commandArgs.split(' ')
-		let size = parseInt(commands[0])
-		if (isNaN(size) || size < 2 || size > 8) {
-			message.reply("You must provide a valid number between 2 and 8.");
-		}
-		else if (commands.length > 1) {
-			message.reply("Too many arguments passed in.")
-		}
-		else {
-			let Board = Minesweeper.CreateBoard(size);
-			message.channel.send(`${Board.String}(${Board.Count} bombs)`);
-		}
-	}
-	else if (command === 'character') {												// All character commands
-		const output = await Characters.executeCommand(commandArgs, message)
-		return message.channel.send(output)
-	}
-	else if (command === 'stats') {													// All stats commands
-		const output = await Stats.executeCommand(commandArgs)
-		return message.channel.send(output)
-	}
-	else if (command === 'roll') {
-		const output = await Dice.executeCommand(command, commandArgs);
-		return message.channel.send(output)
-	}
-	
 });
