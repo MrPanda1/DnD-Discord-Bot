@@ -3,14 +3,16 @@ const Table = require('table');														// Get the table module for pretty 
 
 
 
-const commands = ['stats']
+const commands = ['display']
 
-async function executeCommand(command, commandArgs) {
+async function executeCommand(commandArgs) {
+    const commandArray = commandArgs.split(' ');
+    const command = commandArray.shift();
     const index = commands.indexOf(command);
     
     switch(index) {
         case 0:
-            return await stats(commandArgs);
+            return await displayStats(commandArray.join(' '));
     }
 }
         
@@ -81,15 +83,6 @@ const Stats = sequelize.define('stats', {
         defaultValue: 0,
 	},
 });
-
-async function stats(commandArgs) {
-    const splitArgs = commandArgs.split(' ');
-
-    if(splitArgs[0] && splitArgs[0] === 'display') {
-        splitArgs.shift();
-        return await displayStats(splitArgs);
-    }
-}
 
 async function displayStats(argArray) {
     var statsData;

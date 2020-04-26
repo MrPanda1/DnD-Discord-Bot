@@ -47,8 +47,8 @@ client.on('message', async message => {
 		const output = await Characters.executeCommand(commandArgs, message)
 		return message.channel.send(output)
 	}
-	else if (Stats.commands.indexOf(command) > -1) {								// All stats commands
-		const output = await Stats.executeCommand(command, commandArgs)
+	else if (command === 'stats') {													// All stats commands
+		const output = await Stats.executeCommand(commandArgs)
 		return message.channel.send(output)
 	}
 	else if (Dice.commands.indexOf(command) > -1) {
